@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>המצפן התעסוקתי - שירות חברתי חינמי</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rubik', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 3px solid #764ba2;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .social-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.95em;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        nav button.active {
+            background: #667eea;
+            color: white;
+        }
+
+        nav button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        nav button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: 'Rubik', 'Arial', sans-serif;
+            direction: rtl;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        button.btn {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        button.btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            flex: 1;
+            max-width: 300px;
+        }
+
+        button.btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        button.btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            flex: 1;
+            max-width: 300px;
+        }
+
+        button.btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .step-indicator {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+            color: #1565c0;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #c33;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            background: #efe;
+            color: #3c3;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3c3;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .report-container {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            line-height: 1.8;
+        }
+
+        .coming-soon {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .coming-soon h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            .content { padding: 20px; }
+            nav { flex-direction: column; }
+            nav button { width: 100%; }
+            button.btn { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧭 המצפן התעסוקתי</h1>
+            <p class="subtitle">אבחון קריירה חכם המופעל ב-AI</p>
+            <div class="social-badge">💙 שירות חברתי חינמי לחלוטין</div>
+        </header>
+
+        <nav>
+            <button class="nav-btn active" data-section="diagnosis">🎯 אבחון תעסוקתי</button>
+            <button class="nav-btn" data-section="cv" disabled>📄 קורות חיים (בקרוב)</button>
+            <button class="nav-btn" data-section="jobs" disabled>🔍 חיפוש משרות (בקרוב)</button>
+        </nav>
+
+        <div class="content">
+            <div class="info-box">
+                <strong>💙 שירות חינמי מתרומה קהילתית</strong><br>
+                שירות זה פועל באמצעות תרומה טכנולוגית של בעלי הפרויקט. אנחנו מאמינים בחשיבות הייעוץ התעסוקתי הנגיש לכולם.
+            </div>
+
+            <div class="section active" id="diagnosis">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                <div class="step-indicator" id="stepIndicator">שלב 1 מתוך 9</div>
+                <div class="error-message" id="errorMessage"></div>
+                <div class="success-message" id="successMessage"></div>
+
+                <form id="diagnosisForm">
+                    <!-- Steps will be added by JavaScript -->
+                </form>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" onclick="previousStep()" style="display: none;">← הקודם</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextStep()">הבא →</button>
+                </div>
+            </div>
+
+            <div class="section" id="cv">
+                <div class="coming-soon">
+                    <h2>📄 קורות חיים</h2>
+                    <p>🚀 בקרוב!</p>
+                </div>
+            </div>
+
+            <div class="section" id="jobs">
+                <div class="coming-soon">
+                    <h2>🔍 חיפוש משרות</h2>
+                    <p>🚀 בקרוב!</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            💙 שירות חברתי חינמי | המצפן התעסוקתי | עמותה לתעסוקה
+        </footer>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 9;
+
+        async function generateReport() {
+            const button = document.getElementById('nextBtn');
+            button.disabled = true;
+            button.innerText = 'יוצר דו"ח...';
+
+            try {
+                const data = {
+                    gender: document.getElementById('gender').value,
+                    age: document.getElementById('age').value,
+                    location: document.getElementById('location').value,
+                    achievements: document.getElementById('achievements').value,
+                    hobbies: document.getElementById('hobbies').value,
+                    cognitive: {
+                        quantitative: document.getElementById('q1').value,
+                        verbal: document.getElementById('q2').value,
+                        visual: document.getElementById('q3').value,
+                        technical: document.getElementById('q4').value,
+                    },
+                    holland: {
+                        realistic: document.getElementById('r1').value,
+                        investigative: document.getElementById('r2').value,
+                        artistic: document.getElementById('r3').value,
+                        social: document.getElementById('r4').value,
+                        enterprising: document.getElementById('r5').value,
+                        conventional: document.getElementById('r6').value,
+                    },
+                    aspirations: document.getElementById('aspirations').value,
+                    blockers: document.getElementById('blockers').value,
+                };
+
+                const response = await fetch('/.netlify/functions/openai', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+
+                if (!response.ok) throw new Error('API Error');
+
+                const result = await response.json();
+                displayReport(result.report);
+                showSuccess('✅ דו"ח נוצר בהצלחה!');
+
+            } catch (error) {
+                showError('❌ שגיאה: ' + error.message);
+            } finally {
+                button.disabled = false;
+                button.innerText = 'צור דו"ח →';
+            }
+        }
+
+        function nextStep() {
+            if (currentStep === totalSteps) {
+                generateReport();
+            } else {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        function showStep(step) {
+            // Implementation
+        }
+
+        function showError(msg) {
+            const el = document.getElementById('errorMessage');
+            el.innerText = msg;
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 5000);
+        }
+
+        function showSuccess(msg) {
+            const el = document.getElementById('successMessage');
+            el.innerText = msg;
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 5000);
+        }
+
+        function displayReport(report) {
+            const content = document.querySelector('.content');
+            content.innerHTML = `
+                <button class="btn btn-secondary" onclick="location.reload()">← חזור לתחילה</button>
+                <div class="report-container" style="margin-top: 20px;">
+                    ${report}
+                </div>
+            `;
+        }
+
+        showStep(1);
+    </script>
+</body>
+</html>
