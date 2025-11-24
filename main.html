@@ -1,0 +1,48 @@
+    <!-- דף הבית נפרד -->
+    <div style="text-align:center; margin:40px 0 30px 0;">
+        <h1 style="font-weight:bold; font-size:2.4em;">המצפן התעסוקתי</h1>
+        <div style="font-size:1.15em; margin:10px auto; max-width:600px;">
+            נולד כדי לתת יד אמיתית לכל כך הרבה אנשים שמחפשים כיוון, הזדמנות, התפתחות אישית, או התחלה חדשה.
+        </div>
+        <button onclick="document.getElementById('diagnosis').style.display='block'; this.style.display='none';" style="padding:18px 50px; background:#0038b8; color:white; font-size:1.4em; border-radius:12px;">התחל אבחון</button>
+    </div>
+
+    <!-- אזור אבחון -->
+    <div id="diagnosis" style="display:none;">
+        <form id="diagnosisForm" style="max-width:700px;margin:auto;background:#fff;box-shadow:0 0 16px #0038b861;padding:32px 22px 38px 22px;border-radius:18px;">
+            <h2 style="margin-bottom:24px;">אבחון אישי ב-30 שלבים</h2>
+            <!-- הדוגמה להלן מציגה 3 שלבים, אפשר להרחיב ל-30 עם אותם האלמנטים -->
+            <div id="steps">
+                <!-- שלב לדוגמה -->
+                <div class="step">
+                    <label>שם מלא (לא חובה):</label>
+                    <input type="text" name="name" style="width:100%;padding:9px 10px;margin:10px 0;border-radius:7px;">
+                </div>
+                <div class="step">
+                    <label>גיל:</label>
+                    <select name="age" style="width:100%;padding:9px 10px;margin:10px 0;border-radius:7px;">
+                        <option value="">בחר...</option>
+                        <option value="18-25">18-25</option>
+                        <option value="26-35">26-35</option>
+                        <option value="36-50">36-50</option>
+                        <option value="51+">51+</option>
+                    </select>
+                </div>
+                <!-- שלבים 3 עד 30 - כאן מוסיפים את כל שאלות האבחון שלך -->
+                <!-- ... -->
+                <div class="step">
+                    <label>תחום עניין מרכזי:</label>
+                    <input type="text" name="interest" style="width:100%;padding:9px 10px;margin:10px 0;border-radius:7px;">
+                </div>
+                <!-- שלבים נוספים ממשיכים כאן... -->
+            </div>
+
+            <!-- העלאת קורות חיים -->
+            <div style="margin:25px 0;">
+                <label>העלאת קורות חיים (PDF/DOCX):</label>
+                <input type="file" accept=".pdf,.doc,.docx">
+            </div>
+
+            <button type="submit" style="margin-top:18px;background:#0038b8;color:white;font-weight:bold;padding:14px 38px;border-radius:12px;">סיים אבחון</button>
+        </form>
+    </div>
