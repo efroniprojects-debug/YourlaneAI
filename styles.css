@@ -1,0 +1,74 @@
+body {
+  font-family: 'Rubik', Arial, sans-serif;
+  background: linear-gradient(135deg, #0038b8 0, #ffffff 100);
+  margin: 0;
+  min-height: 100vh;
+  direction: rtl;
+}
+.site-header {
+  text-align: center;
+  background: linear-gradient(135deg, #0038b8 0, #0050d8 100);
+  border-bottom: 8px solid #e5e8fc;
+  color: white;
+  padding: 12px;
+}
+.logo-main {
+  width: 128px;
+  margin: 18px auto;
+  display: block;
+  border-radius: 20px;
+  box-shadow: 0 4px 19px #0038b831;
+}
+.step-card {
+  background: #fff;
+  margin: 32px auto 12px;
+  border-radius: 18px;
+  box-shadow: 0 0 16px #0038b861;
+  max-width: 440px;
+  padding: 34px 22px;
+}
+.progress-bar {
+  height: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #e5e8fc;
+  margin: 18px 0;
+}
+.progress {
+  background: #0038b8;
+  height: 100%;
+  width: 3.3%;
+  transition: width 0.3s;
+}
+.footer {
+  text-align: center;
+  margin: 48px 0 12px 0;
+  color: #0038b8;
+}
+.nav-btn {
+  background: #0038b8;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 9px;
+  padding: 14px 28px;
+  margin: 12px 12px 0 0;
+  border: none;
+  font-size: 1.13em;
+  cursor: pointer;
+}
+label {
+  font-size: 1.1em;
+  margin-bottom: 8px;
+  display: block;
+}
+input, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1.5px solid #e5e8fc;
+  margin-bottom: 18px;
+}
+@media (max-width: 650px){
+  .step-card {max-width: 98vw; padding: 16px 2vw;}
+  .logo-main {width: 75px;}
+}
