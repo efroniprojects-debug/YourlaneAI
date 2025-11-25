@@ -7,11 +7,25 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- HEADER ראשי עם לוגו -->
   <div class="site-header">
-    <img src="logo.png" alt="הלוגו של המצפן התעסוקתי" class="logo-main" />
+    <img src="image.jpg" alt="לוגו המצפן התעסוקתי" class="logo-main" style="width:128px;border-radius: 24px;box-shadow:0 4px 19px #0038b820;display:block;margin:18px auto 10px;">
     <h1>המצפן התעסוקתי</h1>
     <div>מערכת חברתית-חינמית לאבחון, הכוונה והשמה מבוססות AI</div>
   </div>
+
+  <!-- קריירוני - אווטאר מונפש (Lottie) -->
+  <div style="text-align:center;margin-top:18px;">
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+    <dotlottie-wc 
+      src="https://lottie.host/9defd5c9-c000-45ae-a90f-7525bd94d385/1zxdwrZMXf.lottie" 
+      style="width:180px;height:180px;display:inline-block;" 
+      autoplay loop>
+    </dotlottie-wc>
+    <div style="font-weight:bold;color:#0038b8;">קריירוני – מאבחן תעסוקתי וירטואלי</div>
+  </div>
+
+  <!-- טופס אבחון לדוגמה -->
   <form id="diagnosisForm" autocomplete="off">
     <div class="progress-bar"><div id="progress" class="progress"></div></div>
     <div id="stepsWrap">
@@ -31,16 +45,28 @@
         <label for="city">עיר מגורים</label>
         <input type="text" id="city" name="city" required>
       </div>
-      <!-- לדוגמה: הוסף כאן שלבים עד step30 בהתאם למבנה שהצגנו -->
-      <!-- ... -->
+      <!-- שלב 4 -->
+      <div class="step-card" id="step4" style="display:none;">
+        <label for="education">השכלה פורמלית</label>
+        <input type="text" id="education" name="education" required>
+      </div>
+      <!-- שלב 5 -->
+      <div class="step-card" id="step5" style="display:none;">
+        <label for="experience">ניסיון תעסוקתי עיקרי</label>
+        <input type="text" id="experience" name="experience" required>
+      </div>
+      <!-- המשך שלבים ... (הוסף עד 30 אם תרצה) -->
     </div>
     <div style="text-align:center;">
       <button type="button" class="nav-btn" id="prevBtn" style="display:none;">הקודם</button>
       <button type="button" class="nav-btn" id="nextBtn">הבא</button>
     </div>
   </form>
+
+  <!-- פוטר -->
   <div class="footer">
-    <img src="logo.png" alt="הלוגו של המצפן" style="width:36px;vertical-align:middle;border-radius:12px;"> כל הזכויות שמורות © 2025 | פיתוח: תרומה לקהילה
+    <img src="image.jpg" alt="הלוגו של המצפן" style="width:36px;vertical-align:middle;border-radius:12px;"> 
+    כל הזכויות שמורות © 2025 | פיתוח: תרומה לקהילה
   </div>
   <script src="main.js"></script>
 </body>
